@@ -1,0 +1,26 @@
+{
+  "name": "lchs-railers-esports-bot",
+  "version": "1.0.0",
+  "description": "A Discord bot developed for the LCHS Railers eSports team!",
+  "main": "entry.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SalmonSeasoning/lchs-railers-esports-bot.git"
+  },
+  "keywords": [
+    "Discord",
+    "Railers",
+    "LCHS",
+    "eSports",
+    "Bot"
+  ],
+  "author": "Ty Qualters and LCHS eSports Team",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/SalmonSeasoning/lchs-railers-esports-bot/issues"
+  },
+  "homepage": "https://github.com/SalmonSeasoning/lchs-railers-esports-bot#readme"
+}
