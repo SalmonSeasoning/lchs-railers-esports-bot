@@ -11,3 +11,5 @@ RUN npm install
 COPY . /usr/src/bot
 
 CMD ["node", "entry.js"]
+
+EXPOSE 80 443
