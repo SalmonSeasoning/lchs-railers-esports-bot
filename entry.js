@@ -1,5 +1,6 @@
 const Discord = require('discord.js'),
-    client = new Discord.Client();
+    client = new Discord.Client(),
+    Command = require('./command.js');
 
 client.on('ready', ()=>{
     console.log('The bot is online!');
@@ -10,12 +11,12 @@ client.on('reconnecting', ()=>{
 });
 
 client.on('disconnect', ()=>{
-    console.error('Failed to connect to Discord servers... Exiting.');
-    process.exit(-1);
+    throw(new Error('Failed to connect to Discord servers...'));
 });
 
 client.on('message', (message)=>{
     // Where all the magic happens!
+    
 });
 
 client.login(process.env.TOKEN);
