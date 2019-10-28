@@ -2,5 +2,6 @@ node-modules/
 .git/
 .gitattributes
 .gitignore
+LICENSE
 README.md
 Dockerfile
