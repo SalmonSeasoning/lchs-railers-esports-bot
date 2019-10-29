@@ -33,7 +33,7 @@ class Command
     static getCommandByName(name) {
         for (let command of Command.commandList) {
             if (command.name.toLowerCase() == name.toLowerCase()) {
-                return Command.commandList[i];
+                return command;
             }
         }
     }
