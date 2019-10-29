@@ -4,7 +4,7 @@ services:
     build: ./
     restart: always
     environment:
-      BOT_TOKEN: #delete this comment and paste the bot token here
+      TOKEN: #delete this comment and paste the bot token here
   mysql:
     image: "mysql:latest"
     command: --default-authentication-plugin=mysql_native_password
