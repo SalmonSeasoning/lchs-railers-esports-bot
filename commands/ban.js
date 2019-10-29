@@ -11,7 +11,7 @@ const Command = require('../command.js'),
                 bannedPeopleString += `<@${member.id}>` + (i == mentionedPeople.length ? '' : '\n');
             }
         }
-        const embed = new Discord.RichEmbed()
+        const output = new Discord.RichEmbed()
             .setTitle("Railer Punishment System - RPS")
             .setColor(0xf0380e)
             .setDescription(`**${bannedPeople}** were successfully banned.`)
@@ -19,6 +19,7 @@ const Command = require('../command.js'),
             .setThumbnail("../resources/icon.png")
             .setTimestamp()
             .addField("Banned Users", bannedPeopleString, false);
+        message.author.send({output});
     });
 
 module.exports = new_command;
