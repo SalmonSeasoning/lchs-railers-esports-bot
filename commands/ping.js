@@ -1,5 +1,5 @@
 const Command = require('../command.js'),
-    new_command = new Command("ping", (client, message, args)=>{
+    new_command = new Command("ping", (client, message, args) => {
         message.reply(`PONG! ${client.ping}ms!`);
     });
 
