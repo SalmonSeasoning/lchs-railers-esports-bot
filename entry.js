@@ -2,7 +2,7 @@
 const Discord = require('discord.js'),
     client = new Discord.Client(),
     Command = require('./command.js'),
-    utilities = require('./utilities'),
+    utilities = require('./utilities.js'),
     __PREFIX__ = process.env.PREFIX || process.env.BOT_PREFIX,
     __TOKEN__ = process.env.TOKEN || process.env.BOT_TOKEN;
 
