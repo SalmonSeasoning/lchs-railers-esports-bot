@@ -30,7 +30,8 @@ class Command
         }
     }
     // Retrieve a command (Object) by name
-    static getCommandByName(name) {
+    static getCommandByName(name)
+    {
         for (let command of Command.commandList) {
             if (command.name.toLowerCase() == name.toLowerCase()) {
                 return command;
