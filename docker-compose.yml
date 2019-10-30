@@ -3,7 +3,7 @@ services:
   bot:
     build: ./
     restart: always
-    environment:
+    environment: #these are regular environment variables, please tell me if you add any more
       TOKEN: #delete this comment and paste the bot token here
   mysql:
     image: "mysql:latest"
