@@ -5,6 +5,7 @@ services:
     restart: always
     environment: #these are regular environment variables, please tell me if you add any more
       TOKEN: #delete this comment and paste the bot token here
+      PREFIX: "!"
   mysql:
     image: "mysql:latest"
     command: --default-authentication-plugin=mysql_native_password
