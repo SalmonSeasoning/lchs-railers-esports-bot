@@ -3,6 +3,8 @@ const Discord = require('discord.js'),
     client = new Discord.Client(),
     Command = require('./command.js'),
     utilities = require('./utilities.js'),
+    database = require("./database.js"),
+    dbConnection = database.createConnection(),
     __PREFIX__ = process.env.PREFIX || process.env.BOT_PREFIX,
     __TOKEN__ = process.env.TOKEN || process.env.BOT_TOKEN;
 
@@ -16,6 +18,10 @@ require('./commands/ban.js');
 
 client.on('ready', () => {
     console.log('The bot is online!');
+
+    database.connect(dbConnection)
+    .then(() => console.log("Connection to database successful"))
+    .catch((err) => {throw(err)});
 });
 
 client.on('reconnecting', () => {
