@@ -12,6 +12,7 @@ services:
     restart: always
     environment: #you can change this password if you like
       MYSQL_ROOT_PASSWORD: railerbot
+      MYSQL_DATABASE: railer-db
     volumes:
       - lchs-bot-data:/var/lib/mysql
     links:
