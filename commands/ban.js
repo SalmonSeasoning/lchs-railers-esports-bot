@@ -1,5 +1,7 @@
 const Command = require('../command.js'),
     new_command = new Command("ban", (client, message, args) => {
+        // https://discordapp.com/developers/docs/topics/permissions
+        if(!message.member.hasPermission(0x00000004)) return message.reply('You cannot ban people!');
         var mentionedPeople = message.mentions;
         var bannedPeople = 0;
         var bannedPeopleString = "";
