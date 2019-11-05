@@ -1,15 +1,29 @@
 const mysql = require("mysql");
 
+/** 
+ * If you change stuff around in the docker-compose file you better pass some environment variables.
+ * Don't change anything if you're using docker-compose like you should be using.
+ * 
+ * DB_HOST = MySQL server. "mysql" is the default.
+ * DB_USER = MySQL user. "root" is default.
+ * DB_PASS = MySQL password. "railerbot" is default.
+ * DB_NAME = The MySQL database that the bot will use. "railer-db" is default.
+ */
+const dbhost = process.env.DB_HOST || "mysql";
+const dbuser = precess.env.DB_USER || "root";
+const dbpass = process.env.DB_PASS || "railerbot";
+const dbname = process.env.DB_NAME || "railer-db";
+
 //i'm going to have a lot of these be promises because discord.js is based on promises
 
 //i think this just sets the parameters to be used for when we actually connect later
 module.exports.createConnection = () => {
     //connecting to mysql db, assuming defaults are left alone in the docker-compose
     return mysql.createConnection({ 
-        host: "mysql",
-        user: "root",
-        password: "railerbot",
-        database: "railer-db",
+        host: dbpass,
+        user: dbuser,
+        password: dbpass,
+        database: dbname,
         charset: "utf8mb4_bin",
         multipleStatements: true //remember to sanitize inputs
     });
