@@ -1,4 +1,5 @@
 const mysql = require("mysql");
+const utilities = require("./utilities.js");
 
 /** 
  * If you change stuff around in the docker-compose file you better pass some environment variables.
@@ -112,3 +113,19 @@ module.exports.getAdmins = (db) => {
         }
     });
 }
+
+//adds a user to the admins table
+//resolves with nothing
+//rejects with mysql errors, or if the database is not connected
+module.exports.addAdmin = (db, admin_id) => {
+    return new Promise((res, rej) => {
+        if (db.state == "disconnected") rej(new Error("MySQL database not connected."));
+        else if (!utilities.TextIsValid(admin_id)) rej(new Error("Admin ID invalid."));
+        else {
+            db.query(`INSERT INTO admins SET ?`, { user_id: admin_id }, (err, result) => {
+                if (err) rej(err);
+                else res();
+            });
+        }
+    });
+};
