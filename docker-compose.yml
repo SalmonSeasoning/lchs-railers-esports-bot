@@ -10,11 +10,12 @@ services:
     image: "mysql:latest"
     command: --default-authentication-plugin=mysql_native_password
     restart: always
-    environment: #you can change this password if you like
+    environment:
       MYSQL_ROOT_PASSWORD: railerbot
       MYSQL_DATABASE: railer-db
     volumes:
       - lchs-bot-data:/var/lib/mysql
+      - ./sql:/docker-entrypoint-initdb.d
     links:
       - bot
       - phpmyadmin
