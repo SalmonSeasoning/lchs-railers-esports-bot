@@ -62,3 +62,21 @@ module.exports.doesLevelTableExist = (db) => {
         }
     });
 }
+
+//checks to see if the admin table exists
+//resolves if mysql is connected
+//rejects if database is not connected, or with other mysql errors
+module.exports.doesLevelTableExist = (db) => {
+    return new Promise((res, rej) => {
+        if (db.state == "disconnected") rej(new Error("MySQL database not connected."));
+        else {
+            db.query(`SHOW TABLES LIKE "admins"`, (err, result) => {
+                if (err) rej(err);
+                else {
+                    if (result.length > 0) res(true);
+                    else res(false);
+                }
+            });
+        }
+    });
+}
