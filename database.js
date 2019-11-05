@@ -94,3 +94,21 @@ module.exports.doesLevelTableExist = (db) => {
         }
     });
 }
+
+//gets data from the admins table
+//resolves with an array of admin ids, null if the table is empty
+//rejects with mysql errors, or if the database is not connected
+module.exports.getAdmins = (db) => {
+    return new Promise((res, rej) => {
+        if (db.state == "disconnected") rej(new Error("MySQL database not connected."));
+        else {
+            db.query(`SELECT user_id FROM admins`, (err, result) => {
+                if (err) rej(err);
+                else {
+                    if (result.length > 0) res(null);
+                    else res(result);
+                }
+            });
+        }
+    });
+}
