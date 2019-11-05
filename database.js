@@ -129,3 +129,13 @@ module.exports.addAdmin = (db, admin_id) => {
         }
     });
 };
+
+//checks to see if a user is an admin, returns a boolean
+//made by ty but formatted to look like my code lol
+module.exports.isUserAdmin = (db, userId) => {
+    let isAdmin = false;
+    module.exports.getAdmins(db).then((admins) => {
+        if (admins != null && admins.includes(message.author.id)) isAdmin = true;
+    }).catch(console.error);
+    return isAdmin;
+};
