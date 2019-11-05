@@ -20,7 +20,7 @@ const dbname = process.env.DB_NAME || "railer-db";
 module.exports.createConnection = () => {
     //connecting to mysql db, assuming defaults are left alone in the docker-compose
     return mysql.createConnection({ 
-        host: dbpass,
+        host: dbhost,
         user: dbuser,
         password: dbpass,
         database: dbname,
