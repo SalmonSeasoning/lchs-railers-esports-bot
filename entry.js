@@ -34,9 +34,9 @@ client.on('disconnect', () => {
 
 client.on('message', (message) => {
     // Command handling
-    if(message.cleanContent.startsWith(__PREFIX__)) {
+    if(message.cleanContent.toLowerCase().startsWith(__PREFIX__)) {
         const commandName = message.cleanContent.split(' ')[0].substring(__PREFIX__.length);
-        const selectedCommand = Command.getCommandByName(commandName);
+        const selectedCommand = Command.getCommandByName(commandName.toLowerCase());
         if (selectedCommand) {
             const args = message.cleanContent.split(' ').shift();
             selectedCommand.func(client, message, args);
