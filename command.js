@@ -1,9 +1,12 @@
 class Command {
-    constructor(name, func) {
+    constructor(name, func, requiresElevation) {
         if(Command.getCommandByName(name))
             throw(new Error(`A command named ${name} already exists!`));
         this.name = name;
         this.func = func;
+        if(requiresElevation) this.requiresElevation = true;
+        else
+            this.requiresElevation = false;
         Command.commandList.push(this);
     }
     // Retrieve an array of command names
