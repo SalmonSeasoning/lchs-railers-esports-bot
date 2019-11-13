@@ -30,7 +30,7 @@ const Command = require('../command.js'),
                 }
                 else if(args[1])
                 {
-                    message.reply('Please correctly specify the channel type!');
+                    message.reply('Please correctly specify the channel type! Can either be `voice` or `text`');
                 }
                 else
                 {
@@ -38,6 +38,7 @@ const Command = require('../command.js'),
                 }
                 break;
             case "delete":
+                    // Tyler can do this
                 break;
             default:
                 message.reply('Failed to perform action. Neither "create" nor "delete" specified.');
