@@ -32,11 +32,16 @@ client.on('disconnect', () => {
     throw(new Error('Failed to connect to Discord servers...'));
 });
 
+// temporary array for admins
+var adminArray = [];
+
 client.on('message', (message) => {
     // Command handling
     if(message.cleanContent.toLowerCase().startsWith(__PREFIX__)) {
         const commandName = message.cleanContent.split(' ')[0].substring(__PREFIX__.length);
         const selectedCommand = Command.getCommandByName(commandName.toLowerCase());
+        if(selectedCommand.requiresElevation && !adminArray.includes(message.author.id))
+            return message.reply('You do not have permission to run this command!');
         if (selectedCommand) {
             const args = message.cleanContent.split(' ').shift();
             selectedCommand.func(client, message, args);
