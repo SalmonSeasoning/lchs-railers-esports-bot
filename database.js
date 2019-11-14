@@ -139,3 +139,21 @@ module.exports.isUserAdmin = (db, user_id) => {
     }).catch(console.error);
     return isAdmin;
 };
+
+//Get metadata from a certain user
+//added new mysql table named cosmetic.sql
+module.exports.getUserMetadata = (db, user_id) => {
+    return new Promise((res, rej) => {
+        if (db.state == "disconnected")
+            rej(new Error("MySQL database not connected."));
+        else {
+            db.query(`SELECT metadata FROM cosmetic WHERE user_id=${user_id}`, (err, result) => {
+                if (err) rej(err);
+                
+                else {
+                    res(Json.Parse(result)); //might work idk.
+                }
+            });
+        }
+    });
+}
