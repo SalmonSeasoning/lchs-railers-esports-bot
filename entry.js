@@ -2,6 +2,7 @@
 const Discord = require('discord.js'),
     client = new Discord.Client(),
     Command = require('./command.js'),
+    fs = require('fs'),
     utilities = require('./utilities.js'),
     database = require("./database.js"),
     dbConnection = database.createConnection(),
@@ -12,10 +13,7 @@ if(!utilities.TextIsValid(__PREFIX__)) throw(new Error("A prefix was not supplie
 if(!utilities.TextIsValid(__TOKEN__)) throw(new Error("A token was not supplied!"));
 
 // Include the new commands
-require('./commands/ping.js');
-require('./commands/help.js');
-require('./commands/bike.js');
-require('./commands/channel.js');
+fs.readdirSync('./commands').forEach(fileName=>require(`./commands/${fileName}`));
 
 client.on('ready', () => {
     console.log('The bot is online!');
