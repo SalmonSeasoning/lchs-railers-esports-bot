@@ -1,5 +1,5 @@
 class Command {
-    constructor(name, func, requiresElevation) {
+    constructor(name, func, requiresElevation, isActiveCommand) {
         if(Command.getCommandByName(name))
             throw(new Error(`A command named ${name} already exists!`));
         this.name = name;
@@ -7,6 +7,9 @@ class Command {
         if(requiresElevation) this.requiresElevation = true;
         else
             this.requiresElevation = false;
+        if(!isActiveCommand) this.isActiveCommand = false;
+        else
+            this.isActiveCommand = true;
         Command.commandList.push(this);
     }
     // Retrieve an array of command names
