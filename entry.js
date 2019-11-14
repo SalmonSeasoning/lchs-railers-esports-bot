@@ -15,6 +15,7 @@ if(!utilities.TextIsValid(__TOKEN__)) throw(new Error("A token was not supplied!
 require('./commands/ping.js');
 require('./commands/help.js');
 require('./commands/bike.js');
+require('./commands/channel.js');
 
 client.on('ready', () => {
     console.log('The bot is online!');
