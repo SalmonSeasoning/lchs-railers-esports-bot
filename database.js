@@ -11,7 +11,7 @@ const utilities = require("./utilities.js");
  * DB_NAME = The MySQL database that the bot will use. "railer-db" is default.
  */
 const dbhost = process.env.DB_HOST || "mysql";
-const dbuser = precess.env.DB_USER || "root";
+const dbuser = process.env.DB_USER || "root";
 const dbpass = process.env.DB_PASS || "railerbot";
 const dbname = process.env.DB_NAME || "railer-db";
 
