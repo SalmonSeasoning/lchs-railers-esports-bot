@@ -52,6 +52,14 @@ class Command {
     }
 }
 
+class CommandEx extends Command // var command = CommandEx({name:'test', func: ()=>{}, requiresElevation: false});
+{
+    constructor(SelectedOptions)
+    {
+      super(SelectedOptions['name'], SelectedOptions['func'], SelectedOptions['requiresElevation'], SelectedOptions['isActiveCommand']);
+    }
+}
+
 Command.commandList = [];
 
 module.exports = Command;
