@@ -45,7 +45,7 @@ client.on('message', (message) => {
             return message.reply('You do not have permission to run this command!');
         if (selectedCommand) {
             const args = message.cleanContent.split(' ').shift();
-            selectedCommand.func(client, message, args);
+            selectedCommand.func(client, message, args, dbConnection);
         }
     }
 });
