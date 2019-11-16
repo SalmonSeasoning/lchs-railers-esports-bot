@@ -39,11 +39,11 @@ client.on('message', (message) => {
     if(message.cleanContent.toLowerCase().startsWith(__PREFIX__)) {
         const commandName = message.cleanContent.split(' ')[0].substring(__PREFIX__.length);
         const selectedCommand = Command.getCommandByName(commandName.toLowerCase());
-        if(!selectedCommand.isActiveCommand)
-            return message.reply('**That command is disabled!**');
-        if(selectedCommand.requiresElevation && !adminArray.includes(message.author.id))
-            return message.reply('You do not have permission to run this command!');
         if (selectedCommand) {
+            if(!selectedCommand.isActiveCommand)
+                return message.reply('**That command is disabled!**');
+            else if(selectedCommand.requiresElevation && !adminArray.includes(message.author.id))
+                return message.reply('You do not have permission to run this command!');
             const args = message.cleanContent.split(' ').shift();
             selectedCommand.func(client, message, args, dbConnection);
         }
