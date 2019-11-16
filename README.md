@@ -13,5 +13,6 @@ Joe Vazquez. See [http://lchsrailers.org/departments](http://www.lchsrailers.org
 - With this, you can now run `docker-compose up` if you are running for testing purposes or `docker-compose up -d` for production purposes. Keep in mind that builds for production will run in the background until something goes horribly wrong, it's manually killed, or the server is restarted, so it must manually be killed if you intend to update or upgrade the Docker instance. The bot, with a little hope, should be online! Also keep in mind that only one instance can run at a time. If an older version is running alongside a newer version, there will be Discord API conflicts and the bot will cease to work.
 - To stop the bot, run `docker-compose down`
 
-## Other things you should know
+## Misc.
 - Fresh restarts: Run `docker-compose down -v` and the **MySQL data will be deleted**. This is necessary after adding/removing SQL tables.
+- Documentation: [simple_docs.md](https://github.com/SalmonSeasoning/lchs-railers-esports-bot/blob/master/simple_docs.md).
