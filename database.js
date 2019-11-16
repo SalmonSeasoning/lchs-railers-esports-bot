@@ -151,7 +151,7 @@ module.exports.getUserMetadata = (db, user_id) => {
                 if (err) rej(err);
                 
                 else {
-                    res(Json.Parse(result)); //might work idk.
+                    res(JSON.Parse(result)); //might work idk.
                 }
             });
         }
