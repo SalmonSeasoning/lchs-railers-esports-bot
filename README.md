@@ -15,4 +15,4 @@ Joe Vazquez. See [http://lchsrailers.org/departments](http://www.lchsrailers.org
 
 ## Misc.
 - Fresh restarts: Run `docker-compose down -v` and the **MySQL data will be deleted**. This is necessary after adding/removing SQL tables.
-- Documentation: [simple_docs.md](https://github.com/SalmonSeasoning/lchs-railers-esports-bot/blob/master/simple_docs.md).
+- For further information, please refer to: "LICENSE", "DOCS.md", "SECURITY.md"
