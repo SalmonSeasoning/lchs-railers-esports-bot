@@ -1,7 +1,7 @@
 # Command (Class)
 ## command.js
 ```js
-var command = new Command( CommandName, CommandFunc, RequiresElevation, IsActiveCommand);
+var command = new Command( CommandName, CommandFunc, RequiresElevation, IsActiveCommand );
 ```
 `CommandName` - The name of the command. I.E. "banana" will be set to run when the user types "!banana".
 
