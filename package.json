@@ -2,7 +2,7 @@
   "name": "lchs-railers-esports-bot",
   "version": "1.0.0",
   "description": "A Discord bot developed for the LCHS Railers eSports team!",
-  "main": "entry.js",
+  "main": "./src/entry.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
