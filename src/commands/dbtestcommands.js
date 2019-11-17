@@ -25,3 +25,10 @@ module.exports.dotablesexist = new Command("doesleveltableexist", (client, messa
     .then((res) => {message.channel.send(`Cosmetic table does ${(res) ? "" : "not "}exist.`)})
     .catch((e) => {message.channel.send(`Error: ${e}`)});
 }, admin, true);
+
+module.exports.getAdmins = new Command("getadmins", (client, message, args, db) => {
+    database.getAdmins(db)
+    .then((admins) => {
+        message.channel.send(`Current list of admins (IDs): ${admins.join(", ")}`);
+    }).catch((e) => {message.channel.send(`Error: ${e}`)});
+});
