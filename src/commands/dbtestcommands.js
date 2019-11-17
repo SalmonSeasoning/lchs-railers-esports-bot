@@ -11,3 +11,9 @@ module.exports.doesDatabaseExist = new Command("doesdbexist", (client, message, 
     .then((res) => {message.channel.send(`Database does ${(res) ? "" : "not "}exist.`)})
     .catch((e) => {message.channel.send(`Error: ${e}`)});
 }, admin, true);
+
+module.exports.doesLevelTableExist = new Command("doesleveltableexist", (client, message, args, db) => {
+    database.doesLevelTableExist(db)
+    .then((res) => {message.channel.send(`Level table does ${(res) ? "" : "not "}exist.`)})
+    .catch((e) => {message.channel.send(`Error: ${e}`)});
+}, admin, true);
