@@ -149,10 +149,7 @@ module.exports.getUserMetadata = (db, user_id) => {
         else {
             db.query(`SELECT metadata FROM cosmetic WHERE user_id=${user_id}`, (err, result) => {
                 if (err) rej(err);
-                
-                else {
-                    res(JSON.Parse(result)); //might work idk.
-                }
+                else res(result);
             });
         }
     });
