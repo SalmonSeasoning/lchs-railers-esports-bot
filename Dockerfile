@@ -6,6 +6,6 @@ WORKDIR /usr/src/bot
 COPY package.json package-lock.json /usr/src/bot/
 RUN npm install 
 
-COPY . /usr/src/bot
+COPY ./src /usr/src/bot
 
 CMD ["node", "entry.js"]
