@@ -31,4 +31,4 @@ module.exports.getAdmins = new Command("getadmins", (client, message, args, db) 
     .then((admins) => {
         message.channel.send(`Current list of admins (IDs): ${admins.join(", ")}`);
     }).catch((e) => {message.channel.send(`Error: ${e}`)});
-});
+}, admin, true);
