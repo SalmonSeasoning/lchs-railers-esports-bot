@@ -20,7 +20,11 @@ client.on('ready', () => {
 
     database.connect(dbConnection)
     .then(() => console.log("Connection to database successful"))
-    .catch((err) => {throw(err)});
+    .catch((err) => {
+        console.error("Unsuccessful database connection. Restarting bot.");
+        console.error(`${err}`);
+        process.exit();
+    });
 });
 
 client.on('reconnecting', () => {
