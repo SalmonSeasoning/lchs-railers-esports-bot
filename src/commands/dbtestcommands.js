@@ -29,6 +29,7 @@ module.exports.dotablesexist = new Command("dotablesexist", (client, message, ar
 module.exports.getAdmins = new Command("getadmins", (client, message, args, db) => {
     database.getAdmins(db)
     .then((admins) => {
-        message.channel.send(`Current list of admins (IDs): ${admins.join(", ")}`);
+        if (admins.length <= 0) message.channel.send(`Admins table empty.`);
+        else message.channel.send(`Current list of admins (IDs): ${admins.join(", ")}`);
     }).catch((e) => {message.channel.send(`Error: ${e}`)});
 }, admin, true);
