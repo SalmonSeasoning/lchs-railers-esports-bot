@@ -15,7 +15,7 @@ services:
       MYSQL_DATABASE: railer-db
     volumes:
       - lchs-bot-data:/var/lib/mysql
-      - ./sql:/docker-entrypoint-initdb.d
+      - ./src/sql:/docker-entrypoint-initdb.d
     links:
       - bot
       - phpmyadmin
