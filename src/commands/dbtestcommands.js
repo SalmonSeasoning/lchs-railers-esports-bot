@@ -12,8 +12,16 @@ module.exports.doesDatabaseExist = new Command("doesdbexist", (client, message, 
     .catch((e) => {message.channel.send(`Error: ${e}`)});
 }, admin, true);
 
-module.exports.doesLevelTableExist = new Command("doesleveltableexist", (client, message, args, db) => {
+module.exports.dotablesexist = new Command("doesleveltableexist", (client, message, args, db) => {
     database.doesLevelTableExist(db)
     .then((res) => {message.channel.send(`Level table does ${(res) ? "" : "not "}exist.`)})
+    .catch((e) => {message.channel.send(`Error: ${e}`)});
+
+    database.doesAdminTableExist(db)
+    .then((res) => {message.channel.send(`Admin table does ${(res) ? "" : "not "}exist.`)})
+    .catch((e) => {message.channel.send(`Error: ${e}`)});
+
+    database.doesCosmeticTableExist(db)
+    .then((res) => {message.channel.send(`Cosmetic table does ${(res) ? "" : "not "}exist.`)})
     .catch((e) => {message.channel.send(`Error: ${e}`)});
 }, admin, true);
