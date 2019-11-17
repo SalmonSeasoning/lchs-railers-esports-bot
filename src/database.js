@@ -157,3 +157,21 @@ module.exports.getUserMetadata = (db, user_id) => {
         }
     });
 }
+
+//checks to see if the cosmetic table exists
+//resolves if mysql is connected
+//rejects if database is not connected, or with other mysql errors
+module.exports.doesCosmeticTableExist = (db) => {
+    return new Promise((res, rej) => {
+        if (db.state == "disconnected") rej(new Error("MySQL database not connected."));
+        else {
+            db.query(`SHOW TABLES LIKE "cosmetic"`, (err, result) => {
+                if (err) rej(err);
+                else {
+                    if (result.length > 0) res(true);
+                    else res(false);
+                }
+            });
+        }
+    });
+}
