@@ -155,6 +155,23 @@ module.exports.getUserMetadata = (db, user_id) => {
     });
 }
 
+//sets the metadata for a user. resolves either true or false. true being that it successfully set the new metadata, false it failed.
+module.exports.setUserMetadata = (db, user_id, metadata) => {
+    return new Promose((res, rej) => {
+         if (db.state == "disconnected")
+             rej(new Error("MySQL database not connected."));
+        else {
+            dq.query(`UPDATE cosmetic SET metadata='${metadata}' WHERE user_id='${user_id}'`, (err, result) => {
+                if(err)
+                    rej(false);
+                else {
+                    res(true);   
+                }
+            });
+        }
+    });
+}
+
 //checks to see if the cosmetic table exists
 //resolves if mysql is connected
 //rejects if database is not connected, or with other mysql errors
