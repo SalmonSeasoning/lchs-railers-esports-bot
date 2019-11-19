@@ -20,6 +20,6 @@ const Command = require('../command.js'),
             
             
         }
-    });
+    }, false, false);
 
 module.exports = new_command;
