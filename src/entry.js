@@ -12,19 +12,15 @@ const Discord = require('discord.js'),
 if(!utilities.TextIsValid(__PREFIX__)) throw(new Error("A prefix was not supplied!"));
 if(!utilities.TextIsValid(__TOKEN__)) throw(new Error("A token was not supplied!"));
 
-// Include the new commands
-fs.readdirSync('./commands').forEach(fileName=>require(`./commands/${fileName}`));
+// Include the new commands (synchronously)
+fs.readdirSync('./commands').forEach(fileName=>{
+    // Only include if it's a .js file
+    if(fileName.substring(fileName.length, fileName.length - 3) === '.js')
+    require(`./commands/${fileName}`);
+});
 
 client.on('ready', () => {
     console.log('The bot is online!');
-
-    database.connect(dbConnection)
-    .then(() => console.log("Connection to database successful"))
-    .catch((err) => {
-        console.error("Unsuccessful database connection. Restarting bot.");
-        console.error(`${err}`);
-        process.exit();
-    });
 });
 
 client.on('reconnecting', () => {
@@ -35,7 +31,7 @@ client.on('disconnect', () => {
     throw(new Error('Failed to connect to Discord servers...'));
 });
 
-// temporary array for admins
+// temporary array for admins (just for testing)
 var adminArray = [];
 
 client.on('message', (message) => {
@@ -49,9 +45,17 @@ client.on('message', (message) => {
             else if(selectedCommand.requiresElevation && !adminArray.includes(message.author.id))
                 return message.reply('You do not have permission to run this command!');
             const args = message.cleanContent.split(' ').shift();
+            // if you want to use database.js functions, include it in the command file
+            // if you aren't touching a database, don't accept dbConnection parameter
             selectedCommand.func(client, message, args, dbConnection);
         }
     }
 });
 
-client.login(__TOKEN__);
+// If can connect to database, login to Discord
+database.connect(dbConnection)
+    .then(() => client.login(__TOKEN__), (err) => {
+        console.error("Unsuccessful database connection.");
+        console.error(`${err}`);
+        process.exit(-1);
+    });
