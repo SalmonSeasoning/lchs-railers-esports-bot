@@ -20,7 +20,7 @@ fs.readdirSync('./commands').forEach(fileName=>{
 });
 
 client.on('ready', () => {
-    console.log('The bot is online!');
+    console.log('The bot is online and connected to the database!');
 });
 
 client.on('reconnecting', () => {
