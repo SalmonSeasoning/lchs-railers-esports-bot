@@ -1,14 +1,14 @@
 class Command {
-    constructor(name, func, requiresElevation, isActiveCommand) {
+    constructor(name, func, isActiveCommand, requiresElevation) {
         if(Command.getCommandByName(name))
             throw(new Error(`A command named ${name} already exists!`));
         this.name = name;
         this.func = func;
+        if(isActiveCommand == undefined || isActiveCommand) this.isActiveCommand = true;
+        else if(!isActiveCommand) this.isActiveCommand = false;
         if(requiresElevation) this.requiresElevation = true;
         else
             this.requiresElevation = false;
-        if(isActiveCommand == undefined || isActiveCommand) this.isActiveCommand = true;
-        else if(!isActiveCommand) this.isActiveCommand = false;
         Command.commandList.push(this);
     }
     // Retrieve an array of command names
@@ -55,7 +55,7 @@ class CommandEx extends Command // var command = CommandEx({name:'test', func: (
 {
     constructor(SelectedOptions)
     {
-      super(SelectedOptions['name'], SelectedOptions['func'], SelectedOptions['requiresElevation'], SelectedOptions['isActiveCommand']);
+      super(SelectedOptions['name'], SelectedOptions['func'], SelectedOptions['isActiveCommand'], SelectedOptions['requiresElevation']);
     }
 }
 
