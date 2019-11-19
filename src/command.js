@@ -7,9 +7,8 @@ class Command {
         if(requiresElevation) this.requiresElevation = true;
         else
             this.requiresElevation = false;
-        if(!isActiveCommand) this.isActiveCommand = false;
-        else
-            this.isActiveCommand = true;
+        if(isActiveCommand == undefined || isActiveCommand) this.isActiveCommand = true;
+        else if(!isActiveCommand) this.isActiveCommand = false;
         Command.commandList.push(this);
     }
     // Retrieve an array of command names
