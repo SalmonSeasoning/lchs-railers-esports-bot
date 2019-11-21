@@ -14,11 +14,25 @@ const Command = require('../command.js'),
             });
             if(userMetadata == undefined || userMetadata == '') {
                 database.setUserMetadata(db, message.author.id, '{}').then((res) => {
-                    //ill work on this later
+                    //success... yay
+                }, (err) => {
+                    message.reply(`Failed to update your metadata.`);
+                }).catch((e) => {
+                    message.reply(`Error when updating your metadata. [${e}]`);
+                });
+                
+                database.getUserMetadata(db, user_id).then((res) => {
+                    userMetadata = Json.parse(res);
+                }).catch((e) => {
+                    userMetadata = undefined;
                 });
             }
-            
-            
+            //GOING TO WORK ON ANOTHER DAY
+            if(userMetadata == undefined) {
+                
+            } else {
+                message.reply(`You are ${userMetadata`);   
+            }
         }
     }, false, false);
 
