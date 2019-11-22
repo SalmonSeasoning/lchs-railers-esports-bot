@@ -34,20 +34,22 @@ client.on('disconnect', () => {
 
 // temporary array for admins (just for testing)
 var adminArray = [];
+var sqlUsersArray = [];
 
 client.on('message', (message) => {
     
     if(!message.guild || message.author.bot || message.system) return;
     
-    let xp;
-    if((xp = database.getUserLevel(dbConnection, message.author.id)))
+    if(sqlUsersArray.includes(message.author.id)){
+        // User exists, go ahead and add 2 XP for the message
+        database.getUserLevel(dbConnection, message.author.id).then((xp)=>{
+            database.setUserLevel(dbConnection, message.author.id, xp + 2);
+        });
+    }else
     {
-        database.setUserLevel(dbConnection, message.author.id, xp + 2);
+        // add the user to the database
     }
-    else
-    {
-        // add the user
-    }
+    
     
     // Command handling
     if(message.cleanContent.toLowerCase().startsWith(__PREFIX__)) {
