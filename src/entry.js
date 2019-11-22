@@ -6,7 +6,7 @@ const Discord = require('discord.js'),
     utilities = require('./utilities.js'),
     database = require("./database.js"),
     dbConnection = database.createConnection(),
-    __PREFIX__ = process.env.PREFIX || process.env.BOT_PREFIX,
+    __PREFIX__ = process.env.PREFIX || process.env.BOT_PREFIX || "!",
     __TOKEN__ = process.env.TOKEN || process.env.BOT_TOKEN;
 
 if(!utilities.TextIsValid(__PREFIX__)) throw(new Error("A prefix was not supplied!"));
@@ -20,6 +20,7 @@ fs.readdirSync('./commands').forEach(fileName=>{
 });
 
 client.on('ready', () => {
+    client.user.setActivity(`${__PREFIX}help`);
     console.log('The bot is online and connected to the database!');
 });
 
@@ -35,6 +36,19 @@ client.on('disconnect', () => {
 var adminArray = [];
 
 client.on('message', (message) => {
+    
+    if(!message.guild || message.author.bot || message.system) return;
+    
+    let xp;
+    if((xp = database.getUserLevel(dbConnection, message.author.id)))
+    {
+        database.setUserLevel(dbConnection, message.author.id, xp + 2);
+    }
+    else
+    {
+        // add the user
+    }
+    
     // Command handling
     if(message.cleanContent.toLowerCase().startsWith(__PREFIX__)) {
         const commandName = message.cleanContent.split(' ')[0].substring(__PREFIX__.length);
