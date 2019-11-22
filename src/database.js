@@ -60,6 +60,48 @@ module.exports.doesDatabaseExist = (db) => {
     });
 };
 
+// get user level cuz Tyler + Sean lazy garbos lmao gotem
+module.exports.getUserLevel = (db, uid) =>
+// epic newline squiggly braces ;)))
+{
+  return new Promise((resolve, reject) => {
+      if(db.state == "disconnect")
+           reject(new Error("MySQL database not connected. Connect it stupid."));
+      else
+      {
+          // this string is not checked so this better not be wrong >:(
+          db.query(`SELECT * FROM levels WHERE user_id='${uid}'`, (err, res) => {
+            if(err) reject(err);
+            else
+            {
+                resolve(res);
+            }
+          });
+          
+      }
+  
+  });
+}
+
+module.exports.setUserLevel = (db, uid, newXP) =>
+// epic newline squiggly braces ;)))
+{
+  return new Promise((resolve, reject) => {
+      if(db.state == "disconnect")
+           reject(new Error("MySQL database not connected. Connect it stupid."));
+      else
+      {
+          // this string is not checked so this better not be wrong >:(
+          db.query(`UPDATE levels SET xp='${newXP}' WHERE user_id='${uid}'`, (err, res) => {
+            if(err) reject(err);
+            resolve(true);
+          });
+          
+      }
+  
+  });
+}
+
 //checks to see if the level table exists
 //resolves if mysql is connected
 //rejects if database is not connected, or with other mysql errors
