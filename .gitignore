@@ -1,3 +1,6 @@
+# DO NOT IGNORE .js.ignore EXTENSIONS!!!
+# Reserved for unused but WIP JavaScript files!
+
 # Logs
 logs
 *.log
