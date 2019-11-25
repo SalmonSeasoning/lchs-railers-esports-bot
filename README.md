@@ -18,5 +18,5 @@ Joe Vazquez. See [http://lchsrailers.org/departments](http://www.lchsrailers.org
 
 ## Misc.
 - Fresh restarts: Run `docker-compose down -v` and the **MySQL data will be deleted**. This is necessary after adding/removing SQL tables.
-- For further information, please refer to: "LICENSE", "DOCS.md", "SECURITY.md"
+- For further information, please refer to: "LICENSE" and "SECURITY.md"
 - Sometimes when running `docker-compose` you might get some kind of connection error, and if that happens on a fresh install, try running `sudo docker-compose` instead.
