@@ -6,7 +6,7 @@ Joe Vazquez. See [http://lchsrailers.org/departments](http://www.lchsrailers.org
 
 ## Setting Up!
 - Get a Discord bot token from [https://discordapp.com/developers/applications](https://discordapp.com/developers/applications)!
-- Install Git, Docker, and docker-compose
+- Install Git, Docker, and Docker-Compose
 - Do a `git clone` of this repository like so: `git clone https://github.com/SalmonSeasoning/lchs-railers-esports-bot`, or simply download the target version (if it's available) from [Releases](https://github.com/SalmonSeasoning/lchs-railers-esports-bot/releases) and unzip the file. Treat it the same. Put repository folder in an easily accessible directory like the user Desktop directory.
 - A Docker image must now be built. Simply open the repository directory. In there, you can build an image using the following command: `docker-compose build`. This will automatically set up the bot with everything it needs.
 - Update the bot token by opening `docker-compose.yml` and changing line 7 after the colon.
@@ -16,3 +16,4 @@ Joe Vazquez. See [http://lchsrailers.org/departments](http://www.lchsrailers.org
 ## Misc.
 - Fresh restarts: Run `docker-compose down -v` and the **MySQL data will be deleted**. This is necessary after adding/removing SQL tables.
 - For further information, please refer to: "LICENSE", "DOCS.md", "SECURITY.md"
+- Sometimes when running `docker-compose` you might get some kind of connection error, and if that happens on a fresh install, try running `sudo docker-compose` instead.
