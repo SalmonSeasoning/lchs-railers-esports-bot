@@ -31,7 +31,7 @@ const Command = require('../command.js'),
             if(userMetadata == undefined) {
                 
             } else {
-                message.reply(`You are ${userMetadata`);   
+                message.reply(`You are ${userMetadata}`);   
             }
         }
     }, false, false);
