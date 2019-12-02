@@ -60,45 +60,35 @@ module.exports.doesDatabaseExist = (db) => {
     });
 };
 
-// get user level cuz Tyler + Sean lazy garbos lmao gotem
-module.exports.getUserLevel = (db, uid) =>
-// epic newline squiggly braces ;)))
-{
+//gets user level from levels table
+//resolves with mysql results
+//rejects with mysql errors
+//ty made this
+module.exports.getUserLevel = (db, uid) => {
   return new Promise((resolve, reject) => {
-      if(db.state == "disconnect")
-           reject(new Error("MySQL database not connected. Connect it stupid."));
-      else
-      {
-          // this string is not checked so this better not be wrong >:(
+      if (db.state == "disconnected") reject(new Error("MySQL database not connected."));
+      else {
           db.query(`SELECT * FROM levels WHERE user_id='${uid}'`, (err, res) => {
-            if(err) reject(err);
-            else
-            {
-                resolve(res);
-            }
+              if (err) reject(err);
+              else resolve(res);
           });
-          
       }
-  
   });
 }
 
-module.exports.setUserLevel = (db, uid, newXP) =>
-// epic newline squiggly braces ;)))
-{
+//sets user level in levels table
+//resolves with mysql results
+//rejects with mysql errors
+//ty made this
+module.exports.setUserLevel = (db, uid, newXP) => {
   return new Promise((resolve, reject) => {
-      if(db.state == "disconnect")
-           reject(new Error("MySQL database not connected. Connect it stupid."));
-      else
-      {
-          // this string is not checked so this better not be wrong >:(
+      if(db.state == "disconnected") reject(new Error("MySQL database not connected."));
+      else {
           db.query(`UPDATE levels SET xp='${newXP}' WHERE user_id='${uid}'`, (err, res) => {
             if(err) reject(err);
-            resolve(true);
+            resolve(res);
           });
-          
       }
-  
   });
 }
 
