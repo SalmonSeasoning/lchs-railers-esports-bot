@@ -32,40 +32,20 @@ client.on('disconnect', () => {
     throw(new Error('Failed to connect to Discord servers...'));
 });
 
-// temporary array for admins (just for testing)
-var adminArray = [];
-var sqlUsersArray = [];
-
 client.on('message', (message) => {
     
     if(!message.guild || message.author.bot || message.system) return;
     
-    if(sqlUsersArray.includes(message.author.id)){
-        // User exists, go ahead and add 2 XP for the message
-        database.getUserLevel(dbConnection, message.author.id).then((xp)=>{
-            database.setUserLevel(dbConnection, message.author.id, xp + 2);
-        });
-    }else
-    {
-        // add the user to the database
-    }
-    
-    
     // Command handling
-    if(message.cleanContent.toLowerCase().startsWith(__PREFIX__)) {
+    if(message.cleanContent.toLowerCase().startsWith(__PREFIX__)) { // <== this line right here might get bottlenecked with spam
+        // Get the name of the command from the message
         const commandName = message.cleanContent.split(' ')[0].substring(__PREFIX__.length);
+        // Search for the command. This will be null if it does not exist
         const selectedCommand = Command.getCommandByName(commandName.toLowerCase());
-        if (selectedCommand) {
-            if(!selectedCommand.isActiveCommand)
-                return message.reply('**That command is disabled!**');
-            else if(selectedCommand.requiresElevation && !adminArray.includes(message.author.id))
-                return message.reply('You do not have permission to run this command!');
-            const args = message.cleanContent.split(' ').shift();
-            // if you want to use database.js functions, include it in the command file
-            // if you aren't touching a database, don't accept dbConnection parameter
-            selectedCommand.func(client, message, args, dbConnection);
-        }
+        if (selectedCommand) RunCommand(selectedCommand, message);
+        return;
     }
+    
 });
 
 // If can connect to database, login to Discord
@@ -75,3 +55,28 @@ database.connect(dbConnection)
         console.error(`${err}`);
         process.exit(-1);
     });
+
+
+// A more organized method of running commands
+function RunCommand(selectedCommand, message)
+{
+    if(selectedCommand.isActiveCommand)
+    {
+        // if admin not required or it is required and the user is also an admin
+        if(!selectedCommand.requiresElevation || selectedCommand.requiresElevation && database.isUserAdmin(dbConnection, message.author.id))
+        {
+            // get arguments from message object
+            const args = message.cleanContent.split(' ').shift();
+            // forward client object, message object, arguments, and the dbConnection
+            return selectedCommand.func(client, message, args, dbConnection);
+        }
+        else
+        {
+            return message.reply('You cannot run this command!');
+        }
+    }
+    else
+    {
+        return message.reply('That command is currently disabled.');
+    }
+}
