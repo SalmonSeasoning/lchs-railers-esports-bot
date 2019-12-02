@@ -17,7 +17,7 @@ const Command = require('../command.js'),
                 }
                 message.guild.createRole({
                     name: name,
-                    color: args[colorindex] ? Number(args[colorindex]) : undefined;
+                    color: args[colorindex] ? Number(args[colorindex]) : undefined
                 }).then((role)=>{
                     message.member.addRole(role);
                     message.reply('Successfully created role!');
