@@ -33,3 +33,8 @@ module.exports.getAdmins = new Command("getadmins", (client, message, args, db) 
         else message.channel.send(`Current list of admins (IDs): ${admins.join(", ")}`);
     }).catch((e) => {message.channel.send(`Error: ${e}`)});
 }, admin, true);
+
+//only does the first user id
+module.exports.isUserAdmin = new Command("isuseradmin", (client, message, args, db) => {
+    message.channel.send(`User ${args[0]} is admin? ${database.isUserAdmin(db, args[0])}`);
+});
