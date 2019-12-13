@@ -7,7 +7,8 @@ const Discord = require('discord.js'),
     database = require("./database.js"),
     dbConnection = database.createConnection(),
     __PREFIX__ = process.env.PREFIX || process.env.BOT_PREFIX || "!",
-    __TOKEN__ = process.env.TOKEN || process.env.BOT_TOKEN;
+    __TOKEN__ = process.env.TOKEN || process.env.BOT_TOKEN,
+    Leveling = require('./levels.js'); // leveling algorithm
 
 if(!utilities.TextIsValid(__PREFIX__)) throw(new Error("A prefix was not supplied!"));
 if(!utilities.TextIsValid(__TOKEN__)) throw(new Error("A token was not supplied!"));
@@ -35,6 +36,9 @@ client.on('disconnect', () => {
 client.on('message', (message) => {
     
     if(!message.guild || message.author.bot || message.system) return;
+
+    // valid message | this is the function that should handle level stuff.
+    Leveling.LevelUp(message, database, dbConnection);
     
     // Command handling
     if(message.cleanContent.toLowerCase().startsWith(__PREFIX__)) { // <== this line right here might get bottlenecked with spam
@@ -68,7 +72,7 @@ function RunCommand(selectedCommand, message)
             // get arguments from message object
             const args = message.cleanContent.split(' ').shift();
             // forward client object, message object, arguments, and the dbConnection
-            return selectedCommand.func(client, message, args, dbConnection);
+            return selectedCommand.func(client, message, args, database, dbConnection);
         }
         else
         {
