@@ -2,6 +2,9 @@
 // will return the amount of XP to give the user. Check should be
 // LevelUp(message, 438) > 0
 // before assigning the new level
+
+const database = require('./database.js');
+
 function CalcNewLevel(message, currentLevel)
 {
   let attachment = message.attachments.array()[0];
@@ -63,7 +66,7 @@ function CalcNewLevel(message, currentLevel)
   }
 }
 
-function LevelUp(message, db, dbConnection)
+function LevelUp(message, dbConnection)
 {
   let uid = message.author.id;
   // get level from database
