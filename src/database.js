@@ -30,30 +30,30 @@ module.exports.createConnection = () => {
     });
 };
 
-//connects to mysql, resolves with database connection if successful
-//rejects with error if not successful
+//connects to mysql, Resolveolves with database connection if successful
+//Rejectects with error if not successful
 module.exports.connect = (db) => {
     //gettin all fancy with promises and stuff
-    return new Promise((res, rej) => {
+    return new Promise((Resolve, Reject) => {
         db.connect(err => {
-            if (err) rej(err);
-            else res(db);
+            if (err) Reject(err);
+            else Resolve(db);
         });
     });
 };
 
 //checks to see if the bot's database actually exists, assumes default db name
-//resolves if mysql is connected
-//rejects if database is not connected, or with other mysql errors
+//Resolveolves if mysql is connected
+//Rejectects if database is not connected, or with other mysql errors
 module.exports.doesDatabaseExist = (db) => {
-    return new Promise((res, rej) => {
-        if (db.state == "disconnected") rej(new Error("MySQL database not connected."));
+    return new Promise((Resolve, Reject) => {
+        if (db.state == "disconnected") Reject(new Error("MySQL database not connected."));
         else {
-            db.query(`SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'railer-db'`, (err, result) => {
-                if (err) rej(err);
+            db.query(`SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'railer-db'`, (err, Resolveult) => {
+                if (err) Reject(err);
                 else {
-                    if (result.length > 0) res(true);
-                    else res(false);
+                    if (Resolveult.length > 0) Resolve(true);
+                    else Resolve(false);
                 }
             });
         }
@@ -61,49 +61,49 @@ module.exports.doesDatabaseExist = (db) => {
 };
 
 //gets user level from levels table
-//resolves with mysql results
-//rejects with mysql errors
+//Resolveolves with mysql Resolveults
+//Rejectects with mysql errors
 //ty made this
 module.exports.getUserLevel = (db, uid) => {
-  return new Promise((resolve, reject) => {
-      if (db.state == "disconnected") reject(new Error("MySQL database not connected."));
+  return new Promise((Resolveolve, Rejectect) => {
+      if (db.state == "disconnected") Rejectect(new Error("MySQL database not connected."));
       else {
-          db.query(`SELECT * FROM levels WHERE user_id='${uid}'`, (err, res) => {
-              if (err) reject(err);
-              else resolve(res);
+          db.query(`SELECT * FROM levels WHERE user_id='${uid}'`, (err, Resolve) => {
+              if (err) Rejectect(err);
+              else Resolveolve(Resolve);
           });
       }
   });
 }
 
 //sets user level in levels table
-//resolves with mysql results
-//rejects with mysql errors
+//Resolveolves with mysql Resolveults
+//Rejectects with mysql errors
 //ty made this
 module.exports.setUserLevel = (db, uid, newXP) => {
-  return new Promise((resolve, reject) => {
-      if(db.state == "disconnected") reject(new Error("MySQL database not connected."));
+  return new Promise((Resolveolve, Rejectect) => {
+      if(db.state == "disconnected") Rejectect(new Error("MySQL database not connected."));
       else {
-          db.query(`UPDATE levels SET xp='${newXP}' WHERE user_id='${uid}'`, (err, res) => {
-            if(err) reject(err);
-            resolve(res);
+          db.query(`UPDATE levels SET xp='${newXP}' WHERE user_id='${uid}'`, (err, Resolve) => {
+            if(err) Rejectect(err);
+            Resolveolve(Resolve);
           });
       }
   });
 }
 
 //checks to see if the level table exists
-//resolves if mysql is connected
-//rejects if database is not connected, or with other mysql errors
+//Resolveolves if mysql is connected
+//Rejectects if database is not connected, or with other mysql errors
 module.exports.doesLevelTableExist = (db) => {
-    return new Promise((res, rej) => {
-        if (db.state == "disconnected") rej(new Error("MySQL database not connected."));
+    return new Promise((Resolve, Reject) => {
+        if (db.state == "disconnected") Reject(new Error("MySQL database not connected."));
         else {
-            db.query(`SHOW TABLES LIKE "levels"`, (err, result) => {
-                if (err) rej(err);
+            db.query(`SHOW TABLES LIKE "levels"`, (err, Resolveult) => {
+                if (err) Reject(err);
                 else {
-                    if (result.length > 0) res(true);
-                    else res(false);
+                    if (Resolveult.length > 0) Resolve(true);
+                    else Resolve(false);
                 }
             });
         }
@@ -111,17 +111,17 @@ module.exports.doesLevelTableExist = (db) => {
 }
 
 //checks to see if the admin table exists
-//resolves if mysql is connected
-//rejects if database is not connected, or with other mysql errors
+//Resolveolves if mysql is connected
+//Rejectects if database is not connected, or with other mysql errors
 module.exports.doesAdminTableExist = (db) => {
-    return new Promise((res, rej) => {
-        if (db.state == "disconnected") rej(new Error("MySQL database not connected."));
+    return new Promise((Resolve, Reject) => {
+        if (db.state == "disconnected") Reject(new Error("MySQL database not connected."));
         else {
-            db.query(`SHOW TABLES LIKE "admins"`, (err, result) => {
-                if (err) rej(err);
+            db.query(`SHOW TABLES LIKE "admins"`, (err, Resolveult) => {
+                if (err) Reject(err);
                 else {
-                    if (result.length > 0) res(true);
-                    else res(false);
+                    if (Resolveult.length > 0) Resolve(true);
+                    else Resolve(false);
                 }
             });
         }
@@ -129,17 +129,17 @@ module.exports.doesAdminTableExist = (db) => {
 }
 
 //gets data from the admins table
-//resolves with an array of admin ids, null if the table is empty
-//rejects with mysql errors, or if the database is not connected
+//Resolveolves with an array of admin ids, null if the table is empty
+//Rejectects with mysql errors, or if the database is not connected
 module.exports.getAdmins = (db) => {
-    return new Promise((res, rej) => {
-        if (db.state == "disconnected") rej(new Error("MySQL database not connected."));
+    return new Promise((Resolve, Reject) => {
+        if (db.state == "disconnected") Reject(new Error("MySQL database not connected."));
         else {
-            db.query(`SELECT user_id FROM admins`, (err, result) => {
-                if (err) rej(err);
+            db.query(`SELECT user_id FROM admins`, (err, Resolveult) => {
+                if (err) Reject(err);
                 else {
-                    if (result.length > 0) res(null);
-                    else res(result);
+                    if (Resolveult.length > 0) Resolve(null);
+                    else Resolve(Resolveult);
                 }
             });
         }
@@ -147,16 +147,16 @@ module.exports.getAdmins = (db) => {
 }
 
 //adds a user to the admins table
-//resolves with nothing
-//rejects with mysql errors, or if the database is not connected
+//Resolveolves with nothing
+//Rejectects with mysql errors, or if the database is not connected
 module.exports.addAdmin = (db, admin_id) => {
-    return new Promise((res, rej) => {
-        if (db.state == "disconnected") rej(new Error("MySQL database not connected."));
-        else if (!utilities.TextIsValid(admin_id)) rej(new Error("Admin ID invalid."));
+    return new Promise((Resolve, Reject) => {
+        if (db.state == "disconnected") Reject(new Error("MySQL database not connected."));
+        else if (!utilities.TextIsValid(admin_id)) Reject(new Error("Admin ID invalid."));
         else {
-            db.query(`INSERT INTO admins SET ?`, { user_id: admin_id }, (err, result) => {
-                if (err) rej(err);
-                else res();
+            db.query(`INSERT INTO admins SET ?`, { user_id: admin_id }, (err, Resolveult) => {
+                if (err) Reject(err);
+                else Resolve();
             });
         }
     });
@@ -175,29 +175,29 @@ module.exports.isUserAdmin = (db, user_id) => {
 //Get metadata from a certain user
 //added new mysql table named cosmetic.sql
 module.exports.getUserMetadata = (db, user_id) => {
-    return new Promise((res, rej) => {
+    return new Promise((Resolve, Reject) => {
         if (db.state == "disconnected")
-            rej(new Error("MySQL database not connected."));
+            Reject(new Error("MySQL database not connected."));
         else {
-            db.query(`SELECT metadata FROM cosmetic WHERE user_id=${user_id}`, (err, result) => {
-                if (err) rej(err);
-                else res(result);
+            db.query(`SELECT metadata FROM cosmetic WHERE user_id=${user_id}`, (err, Resolveult) => {
+                if (err) Reject(err);
+                else Resolve(Resolveult);
             });
         }
     });
 }
 
-//sets the metadata for a user. resolves either true or false. true being that it successfully set the new metadata, false it failed.
+//sets the metadata for a user. Resolveolves either true or false. true being that it successfully set the new metadata, false it failed.
 module.exports.setUserMetadata = (db, user_id, metadata) => {
-    return new Promise((res, rej) => {
+    return new Promise((Resolve, Reject) => {
          if (db.state == "disconnected")
-             rej(new Error("MySQL database not connected."));
+             Reject(new Error("MySQL database not connected."));
         else {
-            dq.query(`UPDATE cosmetic SET metadata='${metadata}' WHERE user_id='${user_id}'`, (err, result) => {
+            dq.query(`UPDATE cosmetic SET metadata='${metadata}' WHERE user_id='${user_id}'`, (err, Resolveult) => {
                 if(err)
-                    rej(false);
+                    Reject(false);
                 else {
-                    res(true);   
+                    Resolve(true);   
                 }
             });
         }
@@ -205,17 +205,17 @@ module.exports.setUserMetadata = (db, user_id, metadata) => {
 }
 
 //checks to see if the cosmetic table exists
-//resolves if mysql is connected
-//rejects if database is not connected, or with other mysql errors
+//Resolveolves if mysql is connected
+//Rejectects if database is not connected, or with other mysql errors
 module.exports.doesCosmeticTableExist = (db) => {
-    return new Promise((res, rej) => {
-        if (db.state == "disconnected") rej(new Error("MySQL database not connected."));
+    return new Promise((Resolve, Reject) => {
+        if (db.state == "disconnected") Reject(new Error("MySQL database not connected."));
         else {
-            db.query(`SHOW TABLES LIKE "cosmetic"`, (err, result) => {
-                if (err) rej(err);
+            db.query(`SHOW TABLES LIKE "cosmetic"`, (err, Resolveult) => {
+                if (err) Reject(err);
                 else {
-                    if (result.length > 0) res(true);
-                    else res(false);
+                    if (Resolveult.length > 0) Resolve(true);
+                    else Resolve(false);
                 }
             });
         }
