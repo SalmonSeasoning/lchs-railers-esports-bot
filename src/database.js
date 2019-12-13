@@ -168,8 +168,8 @@ module.exports.isUserAdmin = (db, user_id) => {
     let isAdmin = false;
     module.exports.getAdmins(db).then((admins) => {
         if (admins != null && admins.includes(user_id)) isAdmin = true;
+        return isAdmin;
     }).catch(console.error);
-    return isAdmin;
 };
 
 //Get metadata from a certain user
@@ -189,7 +189,7 @@ module.exports.getUserMetadata = (db, user_id) => {
 
 //sets the metadata for a user. resolves either true or false. true being that it successfully set the new metadata, false it failed.
 module.exports.setUserMetadata = (db, user_id, metadata) => {
-    return new Promose((res, rej) => {
+    return new Promise((res, rej) => {
          if (db.state == "disconnected")
              rej(new Error("MySQL database not connected."));
         else {
