@@ -72,7 +72,7 @@ function RunCommand(selectedCommand, message)
             // get arguments from message object
             const args = message.cleanContent.split(' ').shift();
             // forward client object, message object, arguments, and the dbConnection
-            return selectedCommand.func(client, message, args, database, dbConnection);
+            return selectedCommand.func(client, message, args, dbConnection);
         }
         else
         {
