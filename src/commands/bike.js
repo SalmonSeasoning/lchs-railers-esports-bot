@@ -1,6 +1,7 @@
-const Command = require('../command.js'),
-    new_command = new Command("bike", (client, message, args) => {
-        message.reply("should've pocketed the bike! :bike:");
-    });
+const { Command } = require("../classes/command");
 
-module.exports = new_command;
+new Command("bike", {
+    callee: (message, database)=>{
+					message.reply("should've pocketed the bike! :bike:");
+    }
+});

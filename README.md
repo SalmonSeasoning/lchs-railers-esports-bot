@@ -1,5 +1,5 @@
 # LCHS Railers eSports Bot
-A Discord bot developed using [Discord.js](https://discord.js.org) for the LCHS Railers eSports team!
+A Discord bot developed using [Discord.js](https://discord.js.org) for the LCHS Railers eSports team! This project was manually merged with [DirectBot3.0](https://github.com/SalmonSeasoning/DirectBot3.0).
 
 ## Faculty Sponsor
 Joe Vazquez. See [http://lchsrailers.org/departments](http://www.lchsrailers.org/departments) for more information.

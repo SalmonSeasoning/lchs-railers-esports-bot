@@ -1,6 +1,9 @@
-const Command = require('../command.js'),
-    new_command = new Command("ping", (client, message, args) => {
-        message.reply(`PONG! ${client.ping}ms!`);
-    });
+const { Command } = require("../classes/command");
+const { ternaryIf } = require("../utils");
 
-module.exports = new_command;
+new Command("ping", {
+    callee: (message, database, client) => {
+        message.reply(`:ping_pong: ${client.ping}ms`);
+    },
+    description: "Check the ping to Discord"
+});

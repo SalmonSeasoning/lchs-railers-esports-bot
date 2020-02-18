@@ -1,6 +1,9 @@
-const Command = require('../command.js'),
-    new_command = new Command("repo", (client, message, args) => {
-        message.reply('https://github.com/SalmonSeasoning/lchs-railers-esports-bot');
-    });
+const { Command } = require("../classes/command");
+const { ternaryIf } = require("../utils");
 
-module.exports = new_command;
+new Command("repo", {
+    callee: (message, database, client) => {
+        message.reply('https://github.com/SalmonSeasoning/lchs-railers-esports-bot');
+    },
+    description: "Get the repository link"
+});

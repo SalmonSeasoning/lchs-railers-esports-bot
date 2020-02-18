@@ -4,7 +4,9 @@
   "description": "A Discord bot developed for the LCHS Railers eSports team!",
   "main": "./src/entry.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+		"run": "node .",
+    "sql-setup": "node ./src/sql_setup.js",
+    "gen-config": "node ./src/config_gen.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +27,7 @@
   "homepage": "https://github.com/SalmonSeasoning/lchs-railers-esports-bot#readme",
   "dependencies": {
     "discord.js": "^11.5.1",
-    "mysql": "^2.17.1"
+    "erlpack": "github:discordapp/erlpack",
+    "mysql": "^2.18.1"
   }
 }
