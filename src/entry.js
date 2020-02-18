@@ -9,8 +9,7 @@ var g_database = new Database(
     process.env.DB_HOST || "mysql",
     process.env.DB_USER || "root",
     process.env.DB_PASS || "railerbot",
-    process.env.DB_NAME || "railer-db",
-    multipleStatements:true
+    process.env.DB_NAME || "railer-db"
 );
 
 var g_administrators = ['311296013178503188','171717502911381505']; // default administrators
